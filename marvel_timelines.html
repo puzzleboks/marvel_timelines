@@ -6,16 +6,20 @@
   <div class="container">
     <header>
       <h1>Marvel Timelines</h1>
-      <form class="new-hero">
+      <!-- <form class="new-hero">
         <input type="text" name="text" placeholder="Type in the name of a superhero" />
-      </form>
+      </form> -->
     </header>
-
   </div>
 
-  {{> hello}}
+  {{> heroImg}}
 </body>
 
-<template name="hello">
-  <p>There is nothing here.</p>
+<template name="heroImg">
+  <form class="new-hero">
+    <input type="text" name="text" placeholder="Type in the name of a superhero" />
+  </form>
+  <div class="heroImg">
+    <img src="{{avatarPath}}" alt="image">
+  </div>
 </template>
