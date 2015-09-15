@@ -1,8 +1,7 @@
-
-
 if (Meteor.isClient) {
   myImgPath = "";
   //console.log(test)
+  var Dep = new Tracker.Dependency();
   Template.heroImg.events({
     "submit .new-hero": function (event) {
       // Prevent default browser form submit
@@ -26,21 +25,19 @@ if (Meteor.isClient) {
         dataType: "json"
         // promise that executes on successful ajax call
       }).done(function(response){
-        myImgPath = response.data.results[0].thumbnail.path + "/portrait_incredible" + ".jpg"
-        console.log(response)
-        console.log(myImgPath)
+        console.dir(this)
+        myImgPath = response.data.results[0].thumbnail.path + "/portrait_incredible" + ".jpg";
+        Template.heroImg.helpers({
+          avatarPath: function(){
+            return myImgPath
+          }
+        });
+        // console.log(myImgPath)
         // console.log(response.data.results[0].id)
       })
       // console.log(myImgPath)
       // Clear form
       event.target.text.value = "";
-    }
-  });
-
-  Template.heroImg.helpers({
-    avatarPath: function () {
-      //console.log(myImgPath)
-      return myImgPath;
     }
   });
 }
